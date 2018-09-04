@@ -1,0 +1,27 @@
+header {
+  background-color: #333333;
+}
+
+a.site-logo,
+a.account {
+  color: #ffffff;
+}
+
+a.site-logo:hover,
+a.account:hover {
+  text-decoration: none !important;
+  color: #ffffff;
+}
+
+a.site-logo {
+  display: block;
+  margin: 8px 0;
+  font-size: 40px;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.account-buttons {
+  text-align: right;
+  padding-top: 25px;
+}

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,500,600');
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'EB Garamond', serif !important;
+}
+
+.form-container {
+  width: 350px;
+  margin: 30px auto 15px;
+  text-align: center;
+}
+
+.form-submit {
+  font-size: 16px;
+  background-color: #ffffff;
+  margin-top: 15px;
+  padding: 8px 20px;
+  border: 1px solid #aaaaaa;
+}

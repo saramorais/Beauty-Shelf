@@ -1,0 +1,32 @@
+h2.product-name {
+  height: 35px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.product-brand {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.product-category {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 10px;
+  text-align: center;
+}
+
+button.add-product {
+  cursor: pointer;
+  background-color: #ffffff;
+  padding: 8px;
+  border: 1px solid #aaaaaa;
+  font-size: 14px;
+}
+
+.product-page {
+  padding: 30px 0 20px;
+}
