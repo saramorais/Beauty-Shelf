@@ -1,4 +1,4 @@
-/* this is edit account for first login - currently being used for first time and current user */
+/* edit account for existig user */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,6 @@ class UserAccountEdit extends Component {
 
   constructor(props) {
     super(props);
-    // console.log(this.props.user);
     this.state = {
       about: this.props.user.about,
       picture: this.props.user.picture,

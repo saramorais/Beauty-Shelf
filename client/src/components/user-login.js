@@ -16,7 +16,6 @@ class UserLogin extends Component {
   }
 
   accountPage(user) {
-    // console.log('accountPage', user.id);
     this.props.history.push(`/user/${user.id}`);
   }
 

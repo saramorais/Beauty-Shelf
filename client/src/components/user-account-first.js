@@ -1,4 +1,4 @@
-/* this is edit account for first existing user - not being used yet */
+/* add account info for the first time - right after user creates account */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 

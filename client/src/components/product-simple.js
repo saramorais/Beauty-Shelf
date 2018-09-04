@@ -19,8 +19,6 @@ const ProductSimple = props => {
         </Link>
       )
     });
-  
 }
-
 
 export default ProductSimple;

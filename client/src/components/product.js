@@ -14,11 +14,7 @@ class Product extends Component {
 
   addProduct(productId) {
     const { currentUser } = this.props;
-    if (currentUser) {
-      this.props.userAddProduct(currentUser.id, productId);
-    } else {
-      alert('Please login!');
-    }
+    currentUser ? this.props.userAddProduct(currentUser.id, productId) : alert('Please login!');
   }
 
   render() {
@@ -48,7 +44,6 @@ class Product extends Component {
         </div>
       )
     });
-
   }
   
 }

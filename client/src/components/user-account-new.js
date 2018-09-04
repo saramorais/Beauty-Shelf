@@ -18,17 +18,13 @@ class UserAccountNew extends Component {
   }
 
   firstLogin(data) {
-    // console.log('callback user login', data);
     this.props.firstLogin(this.state);
-    // console.log('what are the props', this.props.user);
     this.props.history.push('/account-create');
   }
 
   handleSubmit(e) {
     e.preventDefault();
     e.target.reset();
-    // this.setState({ [e.target.name]: '' });
-    // console.log(this.state);
     /*CALL USER FIRST LOGIN ACTION*/
     this.props.createUser(this.state, this.firstLogin);
   }

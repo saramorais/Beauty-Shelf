@@ -7,8 +7,8 @@ import '../style/users.css';
 class UserPage extends Component {
 
   componentDidMount() {
-    const userId = this.props.match.params.id;
-    this.props.fetchUser(userId);
+    const { id } = this.props.match.params;
+    this.props.fetchUser(id);
   }
 
   renderProducts() {
@@ -22,7 +22,11 @@ class UserPage extends Component {
   }
 
   render() {
-    const user = this.props.user;
+    const { user } = this.props;
+
+    if (!user) {
+      return <p>User does not exist...</p>;
+    }
 
     return (
       <div className='container'>
@@ -39,18 +43,18 @@ class UserPage extends Component {
             <p>Chemical Processes: {user.haircolor}</p>
           </div>
         </div>
-
         <div className='row'>
           <h3 className='section-title col-md-12'>Products {user.name} &#10084;</h3>
           { this.renderProducts() }
         </div>
       </div>
     );
+
   }
 }
 
-function mapStateToProps(state) {
-  return { user: state.singleUser }
+function mapStateToProps(state, ownProps) {
+  return { user: state.users[ownProps.match.params.id] };
 }
 
 export default connect(mapStateToProps, { fetchUser })(UserPage);

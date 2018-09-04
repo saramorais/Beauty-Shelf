@@ -11,7 +11,6 @@ class ProductPage extends Component {
     this.addProduct = this.addProduct.bind(this);
   }
 
-
   componentDidMount() {
     const productId = this.props.match.params.id;
     this.props.fetchProduct(productId);
@@ -28,17 +27,17 @@ class ProductPage extends Component {
   }
 
   addProduct(productId) {
-    console.log(this.props.currentUser);
     const { currentUser } = this.props;
-    if (currentUser) {
-      this.props.userAddProduct(currentUser.id, productId);
-    } else {
-      alert('Please login!');
-    }
+    currentUser ? this.props.userAddProduct(currentUser.id, productId) : alert('Please login!');
   }
 
   render() {
-    const product = this.props.product;
+    const { product } = this.props;
+    
+    if (!product) {
+      return <p>...</p>;
+    }
+
     return (
       <div className='container'>
         <div className='row product-page'>
@@ -56,14 +55,14 @@ class ProductPage extends Component {
           <h3 className='section-title col-md-12'>Users that &#10084; {product.name}</h3>
           { this.renderUsers() }
         </div>
-      </div>
+       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return { 
-    product: state.singleProduct,
+    product: state.products[ownProps.match.params.id],
     currentUser: state.currentUser
   }
 }
