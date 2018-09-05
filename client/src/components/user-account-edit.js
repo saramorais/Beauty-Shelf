@@ -20,20 +20,19 @@ class UserAccountEdit extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderUserAccount = this.renderUserAccount.bind(this);
   }
 
-  renderUserAccount() { 
-    this.props.history.push(`/user/${this.props.user.id}`);
-  }
 
   handleSubmit(e) {
     e.preventDefault();
     e.target.reset();
     this.setState({ [e.target.name]: '' });
     if (this.props.user) {
-      this.props.editUser(this.state, this.props.user.id, this.renderUserAccount);
-    }
+      this.props.editUser(this.state, this.props.user.id, () => {
+        this.props.history.push(`/user/${this.props.user.id}`);
+      });
+
+    };
   }
 
   handleChange(e) {

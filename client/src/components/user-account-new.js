@@ -13,20 +13,16 @@ class UserAccountNew extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.firstLogin = this.firstLogin.bind(this);
-
-  }
-
-  firstLogin(data) {
-    this.props.firstLogin(this.state);
-    this.props.history.push('/account-create');
   }
 
   handleSubmit(e) {
     e.preventDefault();
     e.target.reset();
     /*CALL USER FIRST LOGIN ACTION*/
-    this.props.createUser(this.state, this.firstLogin);
+    this.props.createUser(this.state, () => {
+      this.props.firstLogin(this.state);
+      this.props.history.push('/account-create');
+    });
   }
 
   handleChange(e) {

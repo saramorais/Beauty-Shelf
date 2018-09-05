@@ -13,7 +13,7 @@ export default function(state = {}, action) {
       // }
       return { ...state, [action.payload['data'].id]: action.payload['data'] };
     case USER_ADD_PRODUCT:
-      return state;
+      return { ...state, [action.payload['data'].id]: action.payload['data'] };
     default:
       return state;
   }

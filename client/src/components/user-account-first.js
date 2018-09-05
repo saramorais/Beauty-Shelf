@@ -8,7 +8,6 @@ class UserAccountFirst extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.user);
     this.state = {
       about: null,
       picture: null,
@@ -21,11 +20,6 @@ class UserAccountFirst extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderUserAccount = this.renderUserAccount.bind(this);
-  }
-
-  renderUserAccount() { 
-    this.props.history.push(`/user/${this.props.user.id}`);
   }
 
   handleSubmit(e) {
@@ -33,7 +27,9 @@ class UserAccountFirst extends Component {
     e.target.reset();
     this.setState({ [e.target.name]: '' });
     if (this.props.user) {
-      this.props.editUser(this.state, this.props.user.id, this.renderUserAccount);
+      this.props.editUser(this.state, this.props.user.id, () => {
+        this.props.history.push(`/user/${this.props.user.id}`);
+      });
     }
   }
 
@@ -47,7 +43,7 @@ class UserAccountFirst extends Component {
         <div className='row'>
           <div className='form-container'>
             <form onSubmit={this.handleSubmit} className='form-group'>
-              <h1>Edit Account Details</h1>
+              <h1>Create Account</h1>
               <div className='form-group'>
                 <label>Name</label>
                 <input name='name' type='text' onChange={this.handleChange} className="form-control" placeholder='' />

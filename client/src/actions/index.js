@@ -137,7 +137,7 @@ export function editUser(data, userId, callback) {
   }
 }
 
-export function userAddProduct(userId, productId) {
+export function userAddProduct(userId, productId, callback) {
   const request = axios({
     method: 'post',
     url: `/api/user/add_product`,
