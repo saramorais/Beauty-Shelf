@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../style/front-page.css';
-import { fetchUsers } from '../actions';
+import { fetchUsers } from '../actions/users';
 import '../style/users.css';
 
 import User from './user';
+import UsersSearch from './users-search';
 
 class UsersList extends Component {
 
@@ -25,6 +26,7 @@ class UsersList extends Component {
       <div className='row'>
         <div className='col-md-12'>
           <h3 className='section-title'>Discover the beauty</h3>
+          <UsersSearch />
         </div>
           { this.renderUsers() }
       </div>

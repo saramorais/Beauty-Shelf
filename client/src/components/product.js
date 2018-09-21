@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
-import { userAddProduct } from '../actions';
+import { userAddProduct } from '../actions/users';
 
 class Product extends Component {
 

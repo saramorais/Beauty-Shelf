@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from '../actions';
+import { fetchUser } from '../actions/users';
 import ProductSimple from './product-simple';
 import '../style/users.css';
 

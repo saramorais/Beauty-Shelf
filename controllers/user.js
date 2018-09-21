@@ -6,7 +6,6 @@ const Product = require('../models').Product;
 module.exports = {
 
   login(req, res) {
-    // console.log('sess', req.sessionID, session());
     const loginEmail = req.body.email;
     const loginPassword = req.body.password;
     return User
@@ -160,6 +159,32 @@ module.exports = {
             hairstatus: user.hairstatus
           }))
           .catch((error) => res.status(400).send(error));
+      })
+      .catch((error) => res.status(400).send(error));
+  },
+
+  usersSearch(req, res) {
+    return User
+      .findAll({
+        where: { skintype: req.params.term },
+        include: [{
+          model: Product,
+          as: 'products'
+        }]
+      })
+      .then((users) => {
+        if (users.length === 0) {
+          return User
+            .findAll({
+              include: [{
+                model: Product,
+                as: 'products'
+              }]
+            })
+            .then((users) => res.status(200).send(users))
+            .catch((error) => { res.status(400).send(error); });
+        }
+        return res.status(200).send(users);
       })
       .catch((error) => res.status(400).send(error));
   },

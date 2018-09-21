@@ -41,6 +41,8 @@ router.post('/api/user', userController.add);
 router.put('/api/user/:id', authenticate, restrictAccess, userController.update);
 router.delete('/api/user/:id', userController.delete);
 
+router.get('/api/usersSearch/:term', userController.usersSearch);
+
 router.post('/api/user/add_product', userController.addProduct);
 
 router.get('/api/product', productController.list);
@@ -48,5 +50,7 @@ router.get('/api/product/:id', productController.getById);
 router.post('/api/product', productController.add);
 // router.put('/api/product/:id', productController.update);
 router.delete('/api/product/:id', productController.delete);
+
+router.get('/api/productSearch/:term', productController.productSearch);
 
 module.exports = router;

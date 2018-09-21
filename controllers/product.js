@@ -66,6 +66,23 @@ module.exports = {
   //     .catch((error) => res.status(400).send(error));
   // },
 
+  productSearch(req, res) {
+    return Product
+      .findAll({
+        where: { category: req.params.term }
+      })
+      .then((products) => {
+        if (products.length === 0) {
+          return Product
+            .findAll()
+            .then((products) => res.status(200).send(products))
+            .catch((error) => { res.status(400).send(error); });
+        }
+        return res.status(200).send(products);
+      })
+      .catch((error) => res.status(400).send(error));
+  },
+
   delete(req, res) {
     return Product
       .findById(req.params.id)

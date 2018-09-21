@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createUser, firstLogin } from '../actions';
+// import { createUser } from '../actions/users';
+import { firstLogin, createUser } from '../actions';
+
 
 class UserAccountNew extends Component {
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../actions';
+import { fetchProducts } from '../actions/products';
 import Product from './product';
+import ProductsSearch from './products-search';
 import '../style/products.css';
 
 class ProductsList extends Component {
@@ -23,6 +24,7 @@ class ProductsList extends Component {
       <div className='row'>
         <div className='col-md-12'>
           <h3 className='section-title'>Discover the products</h3>
+          <ProductsSearch />
         </div>
         { this.renderProducts() }
       </div>
