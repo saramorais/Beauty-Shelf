@@ -1,8 +1,20 @@
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const User = require('../models').User;
 const Product = require('../models').Product;
 
 module.exports = {
   list(req, res) {
+    return Product
+      .findAll({ 
+        limit: 4
+      })
+      .then((products) => res.status(200).send(products))
+      .catch((error) => { res.status(400).send(error); });
+  },
+
+  listLong(req, res) {
     return Product
       .findAll()
       .then((products) => res.status(200).send(products))
@@ -67,9 +79,12 @@ module.exports = {
   // },
 
   productSearch(req, res) {
+    console.log(req.params.term);
     return Product
       .findAll({
-        where: { category: req.params.term }
+        where: {
+          [Op.or]: [{category: req.params.term}, {brand: req.params.term}, {name: req.params.term}]
+        }
       })
       .then((products) => {
         if (products.length === 0) {

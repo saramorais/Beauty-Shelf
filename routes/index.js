@@ -36,16 +36,19 @@ router.post('/api/user/login', userController.login);
 router.delete('/api/user/logout', userController.logout);
 
 router.get('/api/user', userController.list);
+router.get('/api/users', userController.listLong);
 router.get('/api/user/:id', userController.getById);
 router.post('/api/user', userController.add);
 router.put('/api/user/:id', authenticate, restrictAccess, userController.update);
 router.delete('/api/user/:id', userController.delete);
+
 
 router.get('/api/usersSearch/:term', userController.usersSearch);
 
 router.post('/api/user/add_product', userController.addProduct);
 
 router.get('/api/product', productController.list);
+router.get('/api/products', productController.listLong);
 router.get('/api/product/:id', productController.getById);
 router.post('/api/product', productController.add);
 // router.put('/api/product/:id', productController.update);

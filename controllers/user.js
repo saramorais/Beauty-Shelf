@@ -1,5 +1,6 @@
-const express = require('express');
-const app = express();
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const User = require('../models').User;
 const Product = require('../models').Product;
 
@@ -47,6 +48,21 @@ module.exports = {
   list(req, res) {
     return User
       .findAll({
+        limit: 4,
+        attributes: ['id', 'name', 'location', 'website', 'about', 'picture', 'skintype', 'hairstatus', 'hairtype'],
+        include: [{
+          model: Product,
+          as: 'products'
+        }]
+      })
+      .then((users) => res.status(200).send(users))
+      .catch((error) => { res.status(400).send(error); });
+  },
+
+  listLong(req, res) {
+    return User
+      .findAll({
+        attributes: ['id', 'name', 'location', 'website', 'about', 'picture', 'skintype', 'hairstatus', 'hairtype'],
         include: [{
           model: Product,
           as: 'products'
@@ -59,6 +75,7 @@ module.exports = {
   getById(req, res) {
     return User
       .findById(req.params.id, {
+        attributes: ['id', 'name', 'location', 'website', 'about', 'picture', 'skintype', 'hairstatus', 'hairtype'],
         include: [{
           model: Product,
           as: 'products'
@@ -70,18 +87,7 @@ module.exports = {
             message: 'User Not Found',
           });
         }
-        return res.status(200).send({
-          id: user.id,
-          name: user.name,
-          location: user.location,
-          website: user.website,
-          about: user.about,
-          picture: user.picture,
-          skintype: user.skintype,
-          hairtype: user.hairtype,
-          hairstatus: user.hairstatus,
-          products: user.products
-        });
+        return res.status(200).send(user);
       })
       .catch((error) => res.status(400).send(error));
   },
@@ -166,7 +172,10 @@ module.exports = {
   usersSearch(req, res) {
     return User
       .findAll({
-        where: { skintype: req.params.term },
+        where: { 
+          [Op.or]: [{name: req.params.term}, {location: req.params.term}, {skintype: req.params.term}, {hairtype: req.params.term}, {hairstatus: req.params.term}] 
+        },
+        attributes: ['id', 'name', 'location', 'website', 'about', 'picture', 'skintype', 'hairstatus', 'hairtype'],
         include: [{
           model: Product,
           as: 'products'
@@ -176,6 +185,7 @@ module.exports = {
         if (users.length === 0) {
           return User
             .findAll({
+              attributes: ['id', 'name', 'location', 'website', 'about', 'picture', 'skintype', 'hairstatus', 'hairtype'],
               include: [{
                 model: Product,
                 as: 'products'

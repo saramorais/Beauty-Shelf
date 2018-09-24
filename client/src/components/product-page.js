@@ -16,6 +16,7 @@ class ProductPage extends Component {
   componentDidMount() {
     const productId = this.props.match.params.id;
     this.props.fetchProduct(productId);
+    window.scrollTo(0, 0);
   }
 
   renderUsers() {

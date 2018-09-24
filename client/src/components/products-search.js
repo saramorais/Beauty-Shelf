@@ -35,7 +35,7 @@ class ProductsSearch extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} />
-        <button>Search by Type</button>
+        <button>Search</button>
       </form>
     );
   }

@@ -9,6 +9,7 @@ class UserPage extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchUser(id);
+    window.scrollTo(0, 0);
   }
 
   renderProducts() {

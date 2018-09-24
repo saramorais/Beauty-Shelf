@@ -18,7 +18,8 @@ import UserLogin from './components/user-login';
 import UserAccountNew from './components/user-account-new';
 import UserAccountEdit from './components/user-account-edit';
 import UserAccountFirst from './components/user-account-first';
-
+import UsersPage from './components/users-page';
+import ProductsPage from './components/products-page';
 
 ReactDOM.render(
   <Provider store={ store }>
@@ -32,6 +33,8 @@ ReactDOM.render(
           <Route path='/account-create' component={UserAccountFirst} />
           <Route path='/user/:id' component={UserPage} />
           <Route path='/product/:id' component={ProductPage} />
+          <Route path='/products' component={ProductsPage} />
+          <Route path='/users' component={UsersPage} />
           <Route path='/' component={FrontPage} />
         </Switch>
       </div>

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../actions/products';
+import { fetchAllProducts } from '../actions/products';
 import Product from './product';
-import '../style/products.css';
+import ProductsSearch from './products-search';
 
-class ProductsList extends Component {
+class ProductsPage extends Component {
 
   componentDidMount() {
-    this.props.fetchProducts();
+    this.props.fetchAllProducts();
+    window.scrollTo(0, 0);
   }
 
   renderProducts() {
@@ -20,19 +21,19 @@ class ProductsList extends Component {
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-md-12'>
-          <h3 className='section-title'>Discover the products</h3>
+      <div className='container'>
+        <h1>Products</h1>
+        <ProductsSearch />
+        <div className='row'>
+          { this.renderProducts() }
         </div>
-        { this.renderProducts() }
       </div>
     );
   }
-
 }
 
 function mapStateToProps(state) {
   return { products: state.products }
 }
 
-export default connect(mapStateToProps, { fetchProducts })(ProductsList);
+export default connect(mapStateToProps, { fetchAllProducts })(ProductsPage);

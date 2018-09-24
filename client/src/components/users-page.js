@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../style/front-page.css';
-import { fetchUsers } from '../actions/users';
-import '../style/users.css';
-
+import { fetchAllUsers } from '../actions/users';
 import User from './user';
+import UsersSearch from './users-search';
 
-class UsersList extends Component {
+class UsersPage extends Component {
 
   componentDidMount() {
-    this.props.fetchUsers();
+    this.props.fetchAllUsers();
+    window.scrollTo(0, 0);
   }
 
   renderUsers() {
@@ -22,22 +21,24 @@ class UsersList extends Component {
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-md-12'>
-          <h3 className='section-title'>Discover the beauty</h3>
+      <div className='container'>
+        <h1>Users</h1>
+        <h3>Search Users</h3>
+        <UsersSearch />
+        <div className='row'>
+          { this.renderUsers() }
         </div>
-        { this.renderUsers() }
       </div>
     );
   }
 }
 
+
 function mapStateToProps(state) {
   return { 
     users: state.users,
     currentUser: state.currentUser 
-
   }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(UsersList);
+export default connect(mapStateToProps, { fetchAllUsers })(UsersPage);

@@ -1,10 +1,11 @@
 import _ from 'lodash';
-import { FETCH_USERS, FETCH_USER, USER_ADD_PRODUCT, SEARCH_USERS } from '../actions/users';
-
+import { FETCH_USERS, FETCH_USER, USER_ADD_PRODUCT, SEARCH_USERS, FETCH_ALL_USERS } from '../actions/users';
 
 export default function(state = {}, action) {
   switch(action.type) {
     case FETCH_USERS:
+      return _.mapKeys(action.payload['data'], 'id');
+    case FETCH_ALL_USERS:
       return _.mapKeys(action.payload['data'], 'id');
     case FETCH_USER:
       return { ...state, [action.payload['data'].id]: action.payload['data'] };
